@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Dashboard from './component/dashboard/Dashboard.js';
 import store from './lib/store.js';
-import CategoryCreateForm from './component/category-form/CategoryCreateForm.js';
+import CategoryCreateForm from './component/category-components/category-form/CategoryCreateForm.js';
 
 class App extends Component {
     render() {

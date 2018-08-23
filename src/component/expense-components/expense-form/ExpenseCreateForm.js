@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ExpenseCreateForm extends Component {
     constructor(props){
         super(props);
-        this.state = this.props.category
+        this.defaultState = {
+            name: '',
+            expenses: '',
+        };
+        const initialState = this.props.expenses || this.defaultState
+        this.state = {...initialState}
     }
-    addExpense = event => {
-        event.preventDefault();
-        console.log(this.state.category.name)
-    }
+
+    onSubmit = e => {
+        e.preventDefault();
+        this.props.onFinish(this.state);
+    };
+
     onChange = event => {
         const val = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
 
@@ -19,7 +27,7 @@ class ExpenseCreateForm extends Component {
     };
     render(){
         return(
-            <form onSubmit={this.addExpense} onChange={this.onChange}>
+            <form onSubmit={this.onSubmit} onChange={this.onChange}>
                 <h3>Expense</h3>
                 Item:<input name='name' placeholder='title'/><br/>
                 <label>
@@ -32,10 +40,21 @@ class ExpenseCreateForm extends Component {
     }
 }
 
+ExpenseCreateForm.propTypes = {
+    onFinish: PropTypes.func.isRequired,
+    expense: PropTypes.object,    
+}
+
+ExpenseCreateForm.defaultProps = {
+    expense: {
+        name: '',
+    }
+}
+
 const mapDispatchToProps = (dispatch) => ({
-    createCategory: category => dispatch(createCategory(category)),
-    updateCategory: category => dispatch(updateCategory(category)),
-    destroyCategory: category => dispatch(destroyCategory(category)),
+    createExpense: expense => dispatch(createExpense(expense)),
+    updateExpense: expense => dispatch(updateExpense(expense)),
+    destroyExpense: expense => dispatch(destroyExpense(expense)),
 });
 
 export default connect(mapDispatchToProps)(ExpenseCreateForm);

@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import {createCategory, updateCategory, destroyCategory} from '../../reducers/index';
+import {createCategory, updateCategory, destroyCategory} from '../../../reducers/categoryReducer.js';
 
 class CategoryCreateForm extends Component {
 

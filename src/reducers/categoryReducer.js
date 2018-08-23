@@ -12,20 +12,20 @@ export default (state=defaultState, action) => {
     let {type, payload} = action;
 
     switch(type) {
-        case 'CATEGORY_CREATE':
-        payload.id = uuid();
-        
-        return {
+
+        case CATEGORY_CREATE:
+        payload.id = uuid(); 
+        return{ 
             ...state,
-            categories: [...state.categories, payload]
+            categories: [...state, payload],
         }
 
-        case 'CATEGORY_UPDATE': {
+        case CATEGORY_UPDATE: {
             console.log(action, 'this is my action')
             return state.map(category => category.id === payload.id ? payload : category)
         }
 
-        case 'CATEGORY_DESTROY': return state.filter(category => category.id !== payload.id)
+        case CATEGORY_DESTROY: return state.filter(category => category.id !== payload.id)
         default: return state;
     }
 }
@@ -35,21 +35,21 @@ export default (state=defaultState, action) => {
 export const createCategory = category => {
     category.id = uuid();
     return {
-        type: 'CATEGORY_CREATE',
+        type: CATEGORY_CREATE,
         payload: category,
     }
 }
 
 export const updateCategory = category => {
     return {
-        type: 'CATEGORY_UPDATE',
+        type: CATEGORY_UPDATE,
         payload: category,
     }
 }
 
 export const destroyCategory = category => {
     return {
-        type: 'CATEGORY_DESTROY',
+        type: CATEGORY_DESTROY,
         payload: category,
     }
 }

@@ -2,10 +2,10 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { createCategory, updateCategory, destroyCategory} from '../../reducers/index';
-import CategoryCreateForm from '../category-form/CategoryCreateForm.js';
-import CategoryItem from '../category-item/CategoryItem.js';
-import CategoryList from '../category-list/CategoryList.js';
+import { createCategory, updateCategory, destroyCategory} from '../../reducers/categoryReducer.js';
+import CategoryCreateForm from '../category-components/category-form/CategoryCreateForm.js';
+// import CategoryItem from '../category-item/CategoryItem.js';
+import CategoryList from '../category-components/category-list/CategoryList.js';
 
 const Dashboard = props => {
     return(
@@ -16,7 +16,7 @@ const Dashboard = props => {
     )
 };
 
-const mapStateToProps = (state) => ({categories: state});
+const mapStateToProps = (state) => ({categories: state.categoryReducer.categories});
 
 const mapDispatchToProps = (dispatch) => ({
     createCategory: category => dispatch(createCategory(category)),
@@ -28,6 +28,6 @@ Dashboard.propTypes = {
     createCategory: PropTypes.func,
     updateCategory: PropTypes.func,
     destroyCategory: PropTypes.func,
-    categories: PropTypes.object,
+    categories: PropTypes.array,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -10,12 +10,16 @@ export default (state=defaultState, action) => {
     let {type, payload} = action;
 
     switch(type) {
-        case 'EXPENSE_CREATE': return [...state, payload]
+
+        case 'EXPENSE_CREATE': return {
+            ...state,
+            expenses: [...state, payload],
+        }
         case 'EXPENSE_UPDATE': {
             console.log(action, 'this is my action')
-            return state.map(category => category.id === payload.id ? payload : category)
+            return state.map(expense => expense.id === payload.id ? payload : expense)
         }
-        case 'EXPENSE_DESTROY': return state.filter(category => category.id !== payload.id)
+        case 'EXPENSE_DESTROY': return state.filter(expense => expense.id !== payload.id)
 
         default: return state;
     }

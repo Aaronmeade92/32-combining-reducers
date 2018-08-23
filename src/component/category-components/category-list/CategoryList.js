@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CategoryItem from '../category-item/CategoryItem.js';
 import PropTypes from 'prop-types';
 import CategoryCreateForm from '../category-form/CategoryCreateForm.js';
-import {createCategory, updateCategory, destroyCategory} from '../../reducers/index';
+import {createCategory, updateCategory, destroyCategory} from '../../../reducers/categoryReducer';
 
 const CategoryList = props => {
 

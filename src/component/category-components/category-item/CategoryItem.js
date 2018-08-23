@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CategoryUpdate from '../category-update/CategoryUpdate.js';
-import {createCategory, updateCategory, destroyCategory} from '../../reducers/index';
-import ExpenseCreateForm from '../expense-form/ExpenseCreateForm.js';
+import {createCategory, updateCategory, destroyCategory} from '../../../reducers/categoryReducer';
+import ExpenseCreateForm from '../../expense-components/expense-form/ExpenseCreateForm.js';
+import ExpenseContainer from '../../expense-components/expense-container/ExpenseContainer.js';
 
 class CategoryItem extends Component {
 
@@ -53,7 +54,7 @@ class CategoryItem extends Component {
                 {this.state.editing && <CategoryUpdate onComplete={this.props.onComplete} onUpdate={this.props.onUpdate} category={this.props.category} onCancel={this.onCancel} />}\
                 <button onClick={this.showExpenseForm}>Add Expense</button>
                 
-                {this.state.addExpense && <ExpenseCreateForm expenseCancel={this.expenseCancel} />}
+                {this.state.addExpense && <ExpenseContainer expenseCancel={this.expenseCancel} />}
             </div>
         );
     }

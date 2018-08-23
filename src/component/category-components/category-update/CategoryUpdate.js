@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import updateCategory from '../../reducers/index';
+import updateCategory from '../../../reducers/categoryReducer';
 import { connect } from 'react-redux';
 
 
